@@ -304,10 +304,10 @@ jobs:
           # the final customization listed above CANNOT have a continuation character
           # more customizations can be pasted after this line
           # Dash Fast Forward
-          curl https://raw.githubusercontent.com/bjorkert/patches/master/fast_forward.patch | git apply
+          # curl https://raw.githubusercontent.com/bjorkert/patches/master/fast_forward.patch | git apply
 
           # Basic I:C Bolus Calculation
-          curl https://raw.githubusercontent.com/bjorkert/patches/master/basicICBolusCalc.patch | git apply
+          # curl https://raw.githubusercontent.com/bjorkert/patches/master/basicICBolusCalc.patch | git apply
 
       # Patch Fastlane Match to not print tables
       - name: Patch Match Tables
