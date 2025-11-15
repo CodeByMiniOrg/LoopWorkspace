@@ -1646,6 +1646,7 @@ extension DeviceDataManager: TherapySettingsViewModelDelegate {
             settings.basalRateSchedule = therapySettings.basalRateSchedule
             settings.maximumBasalRatePerHour = therapySettings.maximumBasalRatePerHour
             settings.maximumBolus = therapySettings.maximumBolus
+            settings.maximumAutomaticBolusIOB = therapySettings.maximumAutomaticBolusIOB
             settings.defaultRapidActingModel = therapySettings.defaultRapidActingModel
             settings.carbRatioSchedule = therapySettings.carbRatioSchedule
             settings.insulinSensitivitySchedule = therapySettings.insulinSensitivitySchedule

@@ -69,6 +69,8 @@ public struct LoopSettings: Equatable {
 
     public var maximumBolus: Double?
 
+    public var maximumAutomaticBolusIOB: Double?
+
     public var suspendThreshold: GlucoseThreshold? = nil
     
     public var automaticDosingStrategy: AutomaticDosingStrategy = .tempBasalOnly
@@ -92,6 +94,7 @@ public struct LoopSettings: Equatable {
         preMealOverride: TemporaryScheduleOverride? = nil,
         maximumBasalRatePerHour: Double? = nil,
         maximumBolus: Double? = nil,
+        maximumAutomaticBolusIOB: Double? = nil,
         suspendThreshold: GlucoseThreshold? = nil,
         automaticDosingStrategy: AutomaticDosingStrategy = .tempBasalOnly,
         defaultRapidActingModel: ExponentialInsulinModelPreset? = nil
@@ -108,6 +111,7 @@ public struct LoopSettings: Equatable {
         self.preMealOverride = preMealOverride
         self.maximumBasalRatePerHour = maximumBasalRatePerHour
         self.maximumBolus = maximumBolus
+        self.maximumAutomaticBolusIOB = maximumAutomaticBolusIOB
         self.suspendThreshold = suspendThreshold
         self.automaticDosingStrategy = automaticDosingStrategy
         self.defaultRapidActingModel = defaultRapidActingModel
@@ -268,6 +272,8 @@ extension LoopSettings: RawRepresentable {
 
         self.maximumBolus = rawValue["maximumBolus"] as? Double
 
+        self.maximumAutomaticBolusIOB = rawValue["maximumAutomaticBolusIOB"] as? Double
+
         if let rawThreshold = rawValue["minimumBGGuard"] as? GlucoseThreshold.RawValue {
             self.suspendThreshold = GlucoseThreshold(rawValue: rawThreshold)
         }
@@ -293,6 +299,7 @@ extension LoopSettings: RawRepresentable {
         raw["scheduleOverride"] = scheduleOverride?.rawValue
         raw["maximumBasalRatePerHour"] = maximumBasalRatePerHour
         raw["maximumBolus"] = maximumBolus
+        raw["maximumAutomaticBolusIOB"] = maximumAutomaticBolusIOB
         raw["minimumBGGuard"] = suspendThreshold?.rawValue
         raw["dosingStrategy"] = automaticDosingStrategy.rawValue
         

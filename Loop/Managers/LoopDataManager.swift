@@ -1792,8 +1792,8 @@ extension LoopDataManager {
 
             let dosingRecommendation: AutomaticDoseRecommendation?
 
-            // automaticDosingIOBLimit calculated from the user entered maxBolus
-            let automaticDosingIOBLimit = maxBolus! * 2.0
+            // automaticDosingIOBLimit uses user setting if available, otherwise defaults to 2x maxBolus
+            let automaticDosingIOBLimit = settings.maximumAutomaticBolusIOB ?? (maxBolus! * 2.0)
             let iobHeadroom = automaticDosingIOBLimit - self.insulinOnBoard!.value
 
             switch settings.automaticDosingStrategy {
@@ -2449,6 +2449,7 @@ extension LoopDataManager {
                             overridePresets: settings.overridePresets,
                             maximumBasalRatePerHour: settings.maximumBasalRatePerHour,
                             maximumBolus: settings.maximumBolus,
+                            maximumAutomaticBolusIOB: settings.maximumAutomaticBolusIOB,
                             suspendThreshold: settings.suspendThreshold,
                             insulinSensitivitySchedule: settings.insulinSensitivitySchedule,
                             carbRatioSchedule: settings.carbRatioSchedule,
@@ -2467,6 +2468,7 @@ extension LoopDataManager {
                 settings.legacyWorkoutTargetRange = newValue.correctionRangeOverrides?.workout
                 settings.suspendThreshold = newValue.suspendThreshold
                 settings.maximumBolus = newValue.maximumBolus
+                settings.maximumAutomaticBolusIOB = newValue.maximumAutomaticBolusIOB
                 settings.maximumBasalRatePerHour = newValue.maximumBasalRatePerHour
                 settings.overridePresets = newValue.overridePresets ?? []
             }
