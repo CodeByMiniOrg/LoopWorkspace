@@ -1,0 +1,32 @@
+diff --git a/OmnipodKit/OmnipodKit/PumpManagerUI/ViewControllers/OmniUICoordinator.swift b/OmnipodKit/OmnipodKit/PumpManagerUI/ViewControllers/OmniUICoordinator.swift
+index c87c613..c4e5466 100644
+--- a/OmnipodKit/OmnipodKit/PumpManagerUI/ViewControllers/OmniUICoordinator.swift
++++ b/OmnipodKit/OmnipodKit/PumpManagerUI/ViewControllers/OmniUICoordinator.swift
+@@ -59,11 +59,11 @@ enum OmniUIScreen {
+         case .rileyLinkSetup: // will be skipped for non-Eros pods
+             return .pairAndPrime
+         case .pairAndPrime:
+-            return .confirmAttachment
++            return .insertCannula
+         case .confirmAttachment:
+             return .insertCannula
+         case .insertCannula:
+-            return .checkInsertedCannula
++            return nil
+         case .checkInsertedCannula:
+             return .setupComplete
+         case .setupComplete:
+@@ -497,12 +497,7 @@ class OmniUICoordinator: UINavigationController, PumpManagerOnboarding, CompletionNotifying {
+         if pumpManager.state.podState?.needsCommsRecovery == true {
+             return .pendingCommandRecovery
+         } else if pumpManager.podCommState == .activating {
+-            if pumpManager.state.podState?.readyForCannulaInsertion == true && pumpManager.podAttachmentConfirmed {
+-                return .insertCannula
+-            } else {
+-                assert(pumpManager.podType != unknownOmnipodType)
+-                return .pairAndPrime // need to finish the priming
+-            }
++            return .insertCannula
+         } else if !pumpManager.isOnboarded {
+             if !pumpManager.initialConfigurationCompleted {
+                 return .firstRunScreen

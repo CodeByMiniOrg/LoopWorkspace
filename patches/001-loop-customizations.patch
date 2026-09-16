@@ -1,0 +1,39 @@
+diff --git a/Loop/Loop/Managers/LoopDataManager.swift b/Loop/Loop/Managers/LoopDataManager.swift
+index c9aef285..83622fe5 100644
+--- a/Loop/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Loop/Managers/LoopDataManager.swift
+@@ -1812,7 +1812,7 @@ extension LoopDataManager {
+             let dosingRecommendation: AutomaticDoseRecommendation?
+ 
+             // automaticDosingIOBLimit calculated from the user entered maxBolus
+-            let automaticDosingIOBLimit = maxBolus! * 2.0
++            let automaticDosingIOBLimit = maxBolus! * 5.0
+             let iobHeadroom = automaticDosingIOBLimit - self.insulinOnBoard!.value
+ 
+             switch settings.automaticDosingStrategy {
+diff --git a/Loop/Loop/Models/LoopConstants.swift b/Loop/Loop/Models/LoopConstants.swift
+index fb69c827..97f5b669 100644
+--- a/Loop/Loop/Models/LoopConstants.swift
++++ b/Loop/Loop/Models/LoopConstants.swift
+@@ -50,7 +50,7 @@ enum LoopConstants {
+     static let retrospectiveCorrectionEnabled = true
+     
+     // Percentage of recommended dose to apply as bolus when using automatic bolus dosing strategy
+-    static let bolusPartialApplicationFactor = 0.4
++    static let bolusPartialApplicationFactor = 0.6
+ 
+     /// Loop completion aging category limits
+     static let completionFreshLimit = TimeInterval(minutes: 6)
+diff --git a/Loop/Loop/Views/SettingsView.swift b/Loop/Loop/Views/SettingsView.swift
+index 4d65f5b2..a3ee0036 100644
+--- a/Loop/Loop/Views/SettingsView.swift
++++ b/Loop/Loop/Views/SettingsView.swift
+@@ -178,7 +178,7 @@ extension SettingsView {
+     }
+     
+     private var loopSection: some View {
+-        Section(header: SectionHeader(label: localizedAppNameAndVersion)) {
++        Section(header: SectionHeader(label: "\(localizedAppNameAndVersion) - Custom patches applied")) {
+             Toggle(isOn: closedLoopToggleState) {
+                 VStack(alignment: .leading) {
+                     Text("Closed Loop", comment: "The title text for the looping enabled switch cell")
